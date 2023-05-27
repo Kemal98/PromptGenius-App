@@ -1,25 +1,21 @@
-'use client'
-import { useState, useEffect } from "react"
-import Image from 'next/image'
-import { useSession } from "next-auth/react"
-import { usePathname, useRouter } from "next/navigation"
+"use client";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-
-const PromptCard = ({post, handleTagClick, handleEdit,handleDelete}) => {
-   
-  const pathName = usePathname()
-  console.log(pathName)
+const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+  const pathName = usePathname();
   const { data: session } = useSession();
 
-  const [copied, setCopied] = useState('')
+  const [copied, setCopied] = useState("");
 
   const handleCopy = () => {
-setCopied(post.prompt)
-navigator.clipboard.writeText(post.prompt)
-setTimeout(() => setCopied(''), 3000)
-  }
-  
-  
+    setCopied(post.prompt);
+    navigator.clipboard.writeText(post.prompt);
+    setTimeout(() => setCopied(""), 3000);
+  };
+
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
@@ -53,7 +49,7 @@ setTimeout(() => setCopied(''), 3000)
             }
             alt={copied === post.prompt ? "tick_icon" : "copy_icon"}
             width={12}
-            height={12} 
+            height={12}
           />
         </div>
       </div>
@@ -84,6 +80,6 @@ setTimeout(() => setCopied(''), 3000)
       )}
     </div>
   );
-}
+};
 
-export default PromptCard
+export default PromptCard;
